@@ -17,57 +17,65 @@
             max-width: 200px;
             margin-bottom: 20px;
         }
-        /* Estilos por defecto para pantallas pequeñas (móviles) */
         .intro-section {
             display: flex;
-            flex-direction: column; /* Apila el logo y el texto por defecto */
-            align-items: center; /* Centra los elementos horizontalmente */
-            text-align: center; /* Centra el texto */
+            flex-direction: column;
+            align-items: center;
+            text-align: justify;
             gap: 20px;
+            max-width: 800px;
         }
-        /* Media query para pantallas de escritorio (768px o más) */
         @media (min-width: 768px) {
             .intro-section {
-                flex-direction: row; /* Coloca el logo y el texto en una fila */
-                text-align: left; /* Alinea el texto a la izquierda en pantallas grandes */
+                flex-direction: row;
+                text-align: justify;
             }
         }
-        /* Estilos para las tarjetas de software */
         .card-list {
-            list-style: none; /* Elimina los puntos de la lista */
+            list-style: none;
             padding: 0;
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
-            align-items: stretch; /* Iguala la altura de las tarjetas en cada fila */
+            align-items: stretch;
         }
         .card {
-            background-color: whitesmoke; /* Se cambió el color de fondo a darkslategrey */
+            background-color: whitesmoke;
             border-radius: 8px;
+            height: 90px;
+            width: 300px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             padding: 20px;
-            /*flex: 1 1 250px; /* Define el tamaño y adaptabilidad de cada tarjeta */
             text-align: left;
             word-wrap: break-word;
-            display: flex; /* Habilita Flexbox para el contenido interno de la tarjeta */
-            flex-direction: column; /* Organiza el contenido en columnas */
-            justify-content: space-between; /* Empuja el título y el enlace a los extremos */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
         }
         .card h3 {
             margin-top: 0;
-            color:darkslategray; /* Se cambió el color del título a blanco */
+            color: darkslategray;
         }
         .card p {
             margin: 0;
         }
         .card a {
-            color: darkslategrey; /* Se cambió el color del enlace a blanco */
+            color: darkslategrey;
             text-decoration: none;
-            word-break: break-all;
+            word-break: break-word;
         }
         .card a:hover {
             text-decoration: underline;
+        }
+        /* Iframe oculto */
+        #viewer {
+            display: none;
+            width: 100%;
+            height: 80vh;
+            border: none;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -75,33 +83,65 @@
     <div class="container">
         <div class="intro-section">
             <img src="logo_PhyloLab.png" alt="Logo de PhyloLab" class="logo">
-            <p>PhyloLab es una plataforma dedicada a la investigación y el análisis filogenético. Utilizamos herramientas de vanguardia para explorar las relaciones evolutivas entre diversas especies y organismos. Nuestro objetivo es proporcionar soluciones innovadoras para la comunidad científica y educativa.</p>
+            <p>PhyloLab es una plataforma dedicada a la investigación y el análisis geográfico y filogenético de la Biodiversidad. Utilizamos herramientas de vanguardia para explorar las relaciones evolutivas entre diversas especies y organismos. Nuestro objetivo es proporcionar soluciones innovadoras para la comunidad científica y educativa.</p>
         </div>
     </div>
     <div class="container">
-        <h2>LISTA DE SOFTWARE</h2>
-         <ul class="card-list">
+        <h2>SOFTWARE</h2>
+        <ul class="card-list">
             <li>
-                <div class="card">
-                    <p><a href="https://gegp01.shinyapps.io/mark/"><h3>Mark-seq</h3></a></p>
+                <div class="card" onclick="openInViewer('https://gegp01.github.io/SIGMAS/list_file2leaflet.html')">
+                    <h3>MAP</h3>
+                    <p>Muestra puntos y poligonos en un mapa base de Leaflet</p>
                 </div>
             </li>
             <li>
-                <div class="card">                    
-                    <p><a href="https://gegp01.shinyapps.io/phylogenetic_clustering/"><h3>Phylogenetic clustering</h3></a></p>
+                <div class="card" onclick="openInViewer('https://gegp01.github.io/wetlands/globe_network_colors.html')">
+                    <h3>Geo Network</h3>
+                    <p>Visualiza redes geográficas y polígonos en Cesium</p>
                 </div>
             </li>
             <li>
-                <div class="card">
-                    <p><a href="https://gegp01.shinyapps.io/coal/"><h3>CoalescentMCMC</h3></a></p>
+                <div class="card" onclick="openInViewer('https://gegp01.github.io/SIGMAS/')">
+                    <h3>SIGMAS</h3>
+                    <p>Sistema de Información Geográfica del Medio Ambiente y la Sociedad.</p>
+                </div>
+            </li>            
+            <li>
+                <div class="card" onclick="openInViewer('https://gegp01.shinyapps.io/mark/')">
+                    <h3>Mark-seq</h3>
+                    <p>Colecta secuencias genéticas de GenBank y las anota con metadatos disponibles.</p>
                 </div>
             </li>
             <li>
-                <div class="card">
-                    <p><a href="https://gegp01.shinyapps.io/mntd/"><h3>Mean nearest taxon distance</h3></a></p>
+                <div class="card" onclick="openInViewer('https://gegp01.shinyapps.io/phylogenetic_clustering/')">
+                    <h3>Phyclust</h3>
+                    <p>Identifica el número de linajes genéticos en un conjunto de secuencias (Cheng 2011).</p>
                 </div>
             </li>
-         </ul>
+            <li>
+                <div class="card" onclick="openInViewer('https://gegp01.shinyapps.io/coal/')">
+                    <h3>CoalescentMCMC</h3>
+                    <p>Coalescencia en un conjunto de muestras genéticas (Paradis 2015).</p>
+                </div>
+            </li>
+            <li>
+                <div class="card" onclick="openInViewer('https://gegp01.shinyapps.io/mntd/')">
+                    <h3>Mean nearest taxon distance</h3>
+                    <p>Estima la distancia genética entre poblaciones de una muestra.</p>
+                </div>
+            </li>
+        </ul>
+        <iframe id="viewer"></iframe>
     </div>
+
+    <script>
+        function openInViewer(url) {
+            const iframe = document.getElementById('viewer');
+            iframe.src = url;
+            iframe.style.display = 'block';
+            window.scrollTo({ top: iframe.offsetTop, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
